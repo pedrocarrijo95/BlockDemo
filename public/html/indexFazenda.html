@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blockchain Demo</title>
+	<meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link type="text/css" href="../css/style.css" rel="stylesheet">
+	<script type="module" src="../js/fazenda.js"></script>
+
+  </head>
+  <body>
+    <div class="main-block">
+      <div class="left-part">
+        <i style="font-size: 60px;" class="fas fa-tractor"></i>
+        <h1 id="htitulo" >Rastreabilidade Blockchain - Fazenda</h1>
+        <p>Selecione abaixo o que deseja.</p>
+        <div class="btn-group">
+          <a id="op1" class="btn-item" href="http://localhost:3000/fazenda"></a>
+          <a id="op2" class="btn-item" href="http://localhost:3000/fabrica"></a>
+		  <a id="op3" class="btn-item" href="http://localhost:3000/distribuidora"></a>
+		  <a class="btn-item" href="http://localhost:3000/maps">Rastrear Produto</a>
+		  <a class="btn-item" href="http://localhost:3000/smartcontract">Smart Contract</a>
+        </div>
+      </div>
+      <form method="post"> 
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i> 
+          <h2>Enviar produto</h2>
+        </div>
+        <div class="info">
+		  <input id="edtIdproduto" type="text" name="name" placeholder="Identificador do produto">
+          <input id="edtMaterial" class="fname" type="text" name="name" placeholder="Material a ser enviado">
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkbox"><span>Eu concordo com os <a href="https://www.w3docs.com/privacy-policy">Termos de uso.</a></span>
+        </div>
+        <button type="button" onclick="cadastrar()">Enviar !</button>
+      </form>
+    </div>
+  </body>
+</html>

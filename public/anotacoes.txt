@@ -1,0 +1,30 @@
+Tasks:
+
+
+
+PENDENTE:
+cliques no grafo - https://stackoverflow.com/questions/49079797/change-contents-of-one-html-page-from-another-html-page
+
+
+
+Priorizar:
+Pagina administrativa
+Maquina Oracle - compartilhar chaves pra acessarem
+Documento de como apresentar isso - historia q criei na mente
+APRESENTAR PARA O RIGHETTI.
+
+
+
+FEITO1:
+- adicionar historico do produto 
+- melhorar o código
+- mostrar smartcontract
+- ver grafos
+
+
+FEITO2: 08/04/2021
+- fundo branco iframe
+- seta 
+- paginazinha pra smartcontract
+- adicionar cadeia manual para  2 fazendas -> 1 fabrica -> 2 distribuidoras
+- ver preco API Maps 

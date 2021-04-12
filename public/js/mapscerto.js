@@ -81,7 +81,7 @@ window.buscarLocal = async function buscarLocal() {
                         document.getElementById('txtRes').innerHTML = histlocal;
 						var qtdLocais = objrs.length;
 						console.log("qtdLocais: "+i);
-						document.getElementById('iframeid').src = "http://localhost:3000/graph?qtdLocais="+qtdLocais;
+						document.getElementById('iframeid').src = "http://129.213.202.34:3000/graph?qtdLocais="+qtdLocais;
 						document.getElementById('iframeid').style.display = "block";
                         addMarks(localAtual);
                     }

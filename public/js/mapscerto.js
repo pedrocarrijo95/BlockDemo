@@ -80,7 +80,7 @@ window.buscarLocal = async function buscarLocal() {
                     if (i == (objrs.length - 1)) {
                         document.getElementById('txtRes').innerHTML = histlocal;
 						var qtdLocais = objrs.length;
-						console.log("qtdLocais: "+i);
+						console.log("qtdLocais: "+qtdLocais);
 						document.getElementById('iframeid').src = "http://129.213.202.34:3000/graph?qtdLocais="+qtdLocais;
 						document.getElementById('iframeid').style.display = "block";
                         addMarks(localAtual);

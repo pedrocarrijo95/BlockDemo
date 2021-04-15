@@ -30,14 +30,14 @@
             var graph = Viva.Graph.graph();
 			var graphics = Viva.Graph.View.svgGraphics(), nodeSize = 24;
 
-			if(qtdLocais == 2){
+			if(qtdLocais >= 2 && qtdLocais < 4){
 			  graph.addNode(origem1,{url: '../css/iconfarm.png'});
               graph.addNode(destino1,{url: '../css/iconfactory.png'});
 			  graph.addNode(destino2,{url: '../css/icontruck.png'});
               graph.addLink(origem1, destino1);
 			  graph.addLink(destino1, destino2);
 			}
-			else if(qtdLocais >=3){
+			else if(qtdLocais >=4){
 			  graph.addNode("fazenda1",{url: '../css/iconfarm.png'});
 			  graph.addNode("fazenda2",{url: '../css/iconfarm.png'});
               graph.addNode("fabrica",{url: '../css/iconfactory.png'});

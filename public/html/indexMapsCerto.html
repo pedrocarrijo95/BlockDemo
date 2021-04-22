@@ -48,8 +48,8 @@
         <div class="btn-group">
           <a id="op1" class="btn-item" href="http://129.213.202.34:3000/fazenda"></a>
           <a id="op2" class="btn-item" href="http://129.213.202.34:3000/fabrica"></a>
-		  <a id="op3" class="btn-item" href="http://129.213.202.34:3000/distribuidora"></a>
-		  <a class="btn-item" href="http://129.213.202.34:3000/maps">Rastrear Produto</a>	  
+          <a id="op3" class="btn-item" href="http://129.213.202.34:3000/distribuidora"></a>
+          <a class="btn-item" href="http://129.213.202.34:3000/maps">Rastrear Produto</a>  
         </div>
       </div>
       <form method="post"> 
@@ -64,10 +64,10 @@
           <input type="checkbox" name="checkbox"><span>Eu concordo com os <a href="https://www.w3docs.com/privacy-policy">Termos de uso.</a></span>
         </div>
         <button type="button" onclick="buscarLocal()">Rastrear</button>
-		<iframe id="iframeid" style="display:none" frameBorder="0" scrolling="no" src="http://129.213.202.34:3000/graph" height="200" width="413" title="Graph"></iframe>
-		
-	    <h3>Localizacão atual: </h3>
-		<h4 style="color:red" id="txtRes"></h4>
+		<iframe id="iframeid" style="display:none" frameBorder="0" scrolling="no" src="http://localhost:3000/graph" height="200" width="413" title="Graph"></iframe>
+		<h4 id="textStatus"></h4>
+	  <h3 style="color:gray">Registros de transações da Blockchain: </h3>
+		<h4 style="color:white" id="txtRes"></h4>
       </form>
 	  	<div id="map"></div>
 		<script

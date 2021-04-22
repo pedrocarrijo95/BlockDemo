@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blockchain Demo</title>
+	<meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link type="text/css" href="../css/style.css" rel="stylesheet">
+	<script type="module" src="../js/admin.js"></script>
+
+  </head>
+  <body>
+    <div class="main-block">
+      <div class="left-part">
+        <i style="font-size: 60px;" class="fas fa-tractor"></i>
+        <h1 id="htitulo" >Rastreabilidade Blockchain - Admin</h1>
+      </div>
+      <form method="post"> 
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i> 
+          <h2>Pagina Admin - Modificar dados de rastreio</h2>
+        </div>
+        <div class="info">
+		  <input id="edtTeste" type="text" name="name" placeholder="Teste(Filtro)">
+		  <input id="edtOrigem1" type="text" name="name" placeholder="Origem 1">
+          <input id="edtDestino1" class="fname" type="text" name="name" placeholder="Destino 1">
+		  <input id="edtOrigem2" type="text" name="name" placeholder="Origem 2">
+          <input id="edtDestino2" class="fname" type="text" name="name" placeholder="Destino 2">
+		  <input id="edtOrigem3" type="text" name="name" placeholder="Origem 3">
+          <input id="edtDestino3" class="fname" type="text" name="name" placeholder="Destino 3">
+        </div>
+        <button type="button" onclick="editar()">Enviar !</button>
+      </form>
+    </div>
+  </body>
+</html>

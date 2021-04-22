@@ -45,5 +45,5 @@ app.get('/admin',function(req,res) {
   res.sendFile(__dirname+'/public/html/indexAdmin.html');
   
 });
-//kill process linux " sudo kill -9 $(sudo lsof -t -i:3000) "
+
 app.listen(process.env.port || PORT);

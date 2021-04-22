@@ -4,6 +4,8 @@ import {
 
 var teste = variables.teste;
 var origem1 = variables.origem1;
+var origem2 = variables.origem2;
+var origem3 = variables.origem3;
 var destino1 = variables.destino1;
 var destino2 = variables.destino2;
 var destino3 = variables.destino3;
@@ -11,6 +13,7 @@ var destino3 = variables.destino3;
 document.getElementById("op1").innerHTML = origem1.charAt(0).toUpperCase() + origem1.slice(1);
 document.getElementById("op2").innerHTML = destino1.charAt(0).toUpperCase() + destino1.slice(1);
 document.getElementById("op3").innerHTML = destino2.charAt(0).toUpperCase() + destino2.slice(1);
+var textStatus = document.getElementById("textStatus");
 
 const myLatLngFazenda = {
     lat: -23.6239823,
@@ -37,9 +40,9 @@ window.buscarLocal = async function buscarLocal() {
 
     var raw = "";
     raw = JSON.stringify({
-        "channel": "trackchannel",
+        "channel": "produtotrackchannel",
         "chaincode": "oabcs-produtotrack",
-        "chaincodeVer": "v3",
+        "chaincodeVer": "v4",
         "method": "queryEvent",
         "args": ["{\"selector\":{\"Teste\":\"" + teste + "\",\"IdProduto\":\"" + idproduto + "\"}}"]
     });
@@ -54,7 +57,8 @@ window.buscarLocal = async function buscarLocal() {
         redirect: 'follow'
     };
     document.getElementById('txtRes').innerHTML = "";
-    alert('Rastreando..');
+    textStatus.innerHTML = "Rastreando..";
+    textStatus.style.color = "#FFFF00";
     fetch("https://blockhubiteam-ladcsteam-iad.blockchain.ocp.oraclecloud.com:7443/restproxy/bcsgw/rest/v1/transaction/query", requestOptions)
         .then(response => response.text())
         .then(result => {
@@ -65,29 +69,36 @@ window.buscarLocal = async function buscarLocal() {
                     var idproduto = objrs[i].Record.IdProduto;
                     var origem = objrs[i].Record.Origem;
                     var material = objrs[i].Record.Material;
+                    var quantidade = objrs[i].Record.Quantidade;
                     var destino = objrs[i].Record.Destino;
                     var timeEvent = objrs[i].Record.TimeEvent;
-                    if (destino == destino1) {
+                    if (destino == destino1) { //fazenda -> fabrica
                         localAtual = destino1;
-                        histlocal = origem1 + " -> " + localAtual;
-                    } else if (destino == destino2) {
+                        histlocal = origem1.toUpperCase() + " -> " + localAtual.toUpperCase() + ": <br>";
+                        histlocal += "Material: "+material+"<br>Quantidade: "+quantidade+"<br><br>";
+                    } else if (destino == destino2) { //fabrica -> distribuidora
                         localAtual = destino2;
-                        histlocal += " -> " + localAtual;
-                    } else if (destino == destino3) {
+                        histlocal += origem2.toUpperCase() + " -> " + localAtual.toUpperCase() + ": <br>";
+                        histlocal += "Material: "+material+"<br>Quantidade: "+quantidade+"<br><br>";
+                    } else if (destino == destino3) { //distribuidora -> clientes
                         localAtual = destino3;
-                        histlocal += " -> " + localAtual;
+                        histlocal += origem3.toUpperCase() + " -> " + localAtual.toUpperCase() + ": <br>";
+                        histlocal += "Material: "+material+"<br>Quantidade: "+quantidade+"<br><br>";
                     }
                     if (i == (objrs.length - 1)) {
                         document.getElementById('txtRes').innerHTML = histlocal;
 						var qtdLocais = objrs.length;
 						console.log("qtdLocais: "+qtdLocais);
-						document.getElementById('iframeid').src = "http://129.213.202.34:3000/graph?qtdLocais="+qtdLocais;
+						document.getElementById('iframeid').src = "http://localhost:3000/graph?qtdLocais="+qtdLocais;
 						document.getElementById('iframeid').style.display = "block";
                         addMarks(localAtual);
                     }
                 }
+                textStatus.innerHTML = "Rastreado.";
+                textStatus.style.color = "#9ACD32";
             } else {
-                alert('Produto não encontrado !');
+                textStatus.innerHTML = "Produto não encontrado !";
+                textStatus.style.color = "#FF6347";
             }
 
 

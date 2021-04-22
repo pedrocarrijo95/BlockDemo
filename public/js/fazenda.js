@@ -14,8 +14,9 @@ document.getElementById("op2").innerHTML = destino1.charAt(0).toUpperCase() + de
 document.getElementById("op3").innerHTML = destino2.charAt(0).toUpperCase() + destino2.slice(1);
 
 window.cadastrar = function cadastrar() {
-
-    alert('Enviando..');
+    var textStatus = document.getElementById("textStatus");
+    textStatus.innerHTML = "Enviando..";
+    textStatus.style.color = "#FFFF00";
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Basic cGVkcm8uYmxvY2tjaGFpbjpCbG9jayYxMjM0NTY3ODk=");
     myHeaders.append("Content-Type", "application/json");
@@ -31,13 +32,14 @@ window.cadastrar = function cadastrar() {
 
     var idproduto = (document.getElementById('edtIdproduto').value).toString();
     var material = (document.getElementById('edtMaterial').value).toString();
+    var quantidade = (document.getElementById('edtQuantidade').value).toString();
 
     var raw = JSON.stringify({
-        "channel": "trackchannel",
+        "channel": "produtotrackchannel",
         "chaincode": "oabcs-produtotrack",
-        "chaincodeVer": "v3",
+        "chaincodeVer": "v4",
         "method": "addEvent",
-        "args": [teste, idproduto, origem, latOrig, longOrig, material, destino, latDest, longDest]
+        "args": [teste, idproduto, quantidade, origem, latOrig, longOrig, material, destino, latDest, longDest]
     });
 
     var requestOptions = {
@@ -51,7 +53,8 @@ window.cadastrar = function cadastrar() {
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
-    alert('Enviado');
+    textStatus.innerHTML = "Enviado.";
+    textStatus.style.color = "#9ACD32"
 
 
 }

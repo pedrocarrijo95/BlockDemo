@@ -25,6 +25,7 @@ type ProdutoTrack struct {
 //Tudo string, mas basta fazer o tratamento adequado no app
 	Teste string `json:"Teste"`
 	IdProduto string `json:"IdProduto"`
+	Quantidade string `json:"Quantidade"`
 	Origem string `json:"Origem"`
 	LatOrigem string `json:"LatOrigem"`
 	LongOrigem string `json:"LongOrigem"`
@@ -89,8 +90,8 @@ func (s *SmartContract) queryEvent(APIstub shim.ChaincodeStubInterface, args []s
 func (s *SmartContract) addEvent(APIstub shim.ChaincodeStubInterface) sc.Response {
 	_, args := APIstub.GetFunctionAndParameters()
 
-	if len(args) != 5 {
-		return shim.Error("Incorrect number of arguments for event. Expecting 5")
+	if len(args) != 10 {
+		return shim.Error("Incorrect number of arguments for event. Expecting 10")
 	};
 	teste := args[0]
 	if teste == "" {
@@ -100,35 +101,40 @@ func (s *SmartContract) addEvent(APIstub shim.ChaincodeStubInterface) sc.Respons
 	if idproduto == "" {
 		return shim.Error("Invalid value for parameter idproduto.")
 	}
-	origem := args[2]
+	quantidade := args[2]
+	if quantidade == "" {
+		return shim.Error("Invalid value for parameter quantidade.")
+	}
+	origem := args[3]
 	if origem == "" {
 		return shim.Error("Invalid value for parameter origem.")
 	}
-	latOrigem := args[3]
+	latOrigem := args[4]
 	if latOrigem == "" {
 		return shim.Error("Invalid value for parameter latOrigem.")
 	}
-	longOrigem := args[4]
+	longOrigem := args[5]
 	if longOrigem == "" {
 		return shim.Error("Invalid value for parameter longOrigem.")
 	}
-	material := args[5]
+	material := args[6]
 	if material == "" {
 		return shim.Error("Invalid value for parameter material.")
 	}
-	destino := args[6]
+	destino := args[7]
 	if destino == "" {
 		return shim.Error("Invalid value for parameter destino.")
 	}
-	latDest := args[7]
+	latDest := args[8]
 	if latDest == "" {
 		return shim.Error("Invalid value for parameter latDest.")
 	}
-	longDest := args[8]
+	longDest := args[9]
 	if longDest == "" {
 		return shim.Error("Invalid value for parameter longDest.")
 	}
-	errorMsg := registerEvent(APIstub,teste,idproduto,origem,latOrigem,longOrigem,material,destino,latDest,longDest)
+	
+	errorMsg := registerEvent(APIstub,teste,idproduto,quantidade,origem,latOrigem,longOrigem,material,destino,latDest,longDest)
 	if errorMsg != "" {
 		return shim.Error(errorMsg)
 	}
@@ -137,10 +143,10 @@ func (s *SmartContract) addEvent(APIstub shim.ChaincodeStubInterface) sc.Respons
 
 
 
-func registerEvent(APIstub shim.ChaincodeStubInterface, teste string, idproduto string, origem string, latOrigem string, longOrigem string, material string, destino string, latDest string, longDest string) (string) {
+func registerEvent(APIstub shim.ChaincodeStubInterface, teste string, idproduto string, quantidade string, origem string, latOrigem string, longOrigem string, material string, destino string, latDest string, longDest string) (string) {
 	time1 := time.Now()
 	//time1 := "tempo"
-	newPosition := ProdutoTrack{Teste: teste, IdProduto: idproduto, Origem: origem, LatOrigem: latOrigem, LongOrigem: longOrigem, Material: material, Destino: destino, LatDest: latDest, LongDest: longDest, TimeEvent: time1.String()}
+	newPosition := ProdutoTrack{Teste: teste, IdProduto: idproduto, Quantidade: quantidade, Origem: origem, LatOrigem: latOrigem, LongOrigem: longOrigem, Material: material, Destino: destino, LatDest: latDest, LongDest: longDest, TimeEvent: time1.String()}
 	positionEncoded, _ := json.Marshal(newPosition)
 	err := APIstub.PutState(APIstub.GetTxID(), positionEncoded)
 	if err != nil {
